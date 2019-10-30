@@ -1,0 +1,41 @@
+1. explicit 可阻止类被用来执行隐式类型转换
+
+Class B{
+public:
+	explicit B (int x=0, bool b= true);
+};
+
+void do(B object);
+
+do(28);// X, int和B之间没有隐式转换
+
+
+2. 
+Class B{
+public:
+	B();                       // default 构造函数
+	B(const B& rhs);           // copy 构造函数
+	B& operator=(const B& rhs);// copy 赋值操作符
+};
+
+B w1;		//default 构造
+B w2(w1);	//copy 构造
+w1 = w2;	//copy 赋值操作符
+B w3 = w2;      //copy 构造
+
+若新对象被定义，则copy构造
+若无新对象定义，则copy赋值操作符
+
+
+
+3. 以const, enum, inline 替换 #define
+ （以编译器替换预处理）
+
+#define a = 1.653
+/* 1. a 没有进入记忆表，所以编译错误时报错1.653而不是a，
+   2. define 对后面的编译过程都有效，所以没有private概念
+*/
+
+
+
+	
